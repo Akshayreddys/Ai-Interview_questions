@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 
-const API_KEY = import.meta.env.VITE_GROQ_API_KEY || "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";
+const API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
 const openai = new OpenAI({
   apiKey: API_KEY,
@@ -24,7 +24,7 @@ async function generateQuestions(technology, experience) {
 
     const prompt = draftPrompt(technology, experience);
     console.log("Sending prompt to Groq API...");
-    
+
     const response = await openai.chat.completions.create({
       model: "llama-3.1-8b-instant",
       messages: [{ role: "user", content: prompt }],
@@ -34,17 +34,23 @@ async function generateQuestions(technology, experience) {
 
     console.log("Response from Groq:", response);
 
-    if (!response.choices || !response.choices[0] || !response.choices[0].message) {
+    if (
+      !response.choices ||
+      !response.choices[0] ||
+      !response.choices[0].message
+    ) {
       throw new Error("Invalid response format from API");
     }
 
     const data = response.choices[0].message.content.trim();
-    
+
     // Validate JSON response
     try {
       JSON.parse(data);
     } catch (parseError) {
-      throw new Error(`Invalid JSON response from API: ${data.substring(0, 100)}...`);
+      throw new Error(
+        `Invalid JSON response from API: ${data.substring(0, 100)}...`,
+      );
     }
 
     return data;
