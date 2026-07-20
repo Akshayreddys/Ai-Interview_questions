@@ -1,13 +1,12 @@
 import OpenAI from "openai";
 
-const API_KEY = import.meta.env.VITE_GROQ_API_KEY || "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";
+const API_KEY = "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";
 
 const openai = new OpenAI({
   apiKey: API_KEY,
   baseURL: "https://api.groq.com/openai/v1",
   dangerouslyAllowBrowser: true,
 });
-
 const draftPrompt = (technology, experience) => {
   return `Generate 10 interview questions for ${experience} level candidates in ${technology}. 
 Provide the questions in a JSON array format as a list of strings.
