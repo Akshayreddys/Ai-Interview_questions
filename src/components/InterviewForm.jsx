@@ -46,11 +46,11 @@ function InterviewForm({ setQuestions }) {
 
   return (
     <div className="mt-8 flex flex-col gap-3 items-center">
-      <div className="flex md:grid sm:grid gap-3 justify-center w-full">
+      <div className="flex flex-col gap-3 justify-center w-full sm:flex-row sm:items-center">
         <input
           type="text"
           placeholder="Enter Technology (e.g., React, Python, Java)"
-          className="border p-2 rounded"
+          className="border p-2 rounded w-full sm:w-auto"
           value={technology}
           onChange={(e) => setTechnology(e.target.value)}
           disabled={loading}
@@ -58,7 +58,7 @@ function InterviewForm({ setQuestions }) {
         <select
           value={experience}
           onChange={(e) => setExperience(e.target.value)}
-          className="border p-2 rounded"
+          className="border p-2 rounded w-full sm:w-auto"
           disabled={loading}
         >
           <option>Fresher</option>
