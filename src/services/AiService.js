@@ -7,6 +7,11 @@ if (!API_KEY) {
     "Missing API key. Create a .env file with VITE_GROQ_API_KEY or VITE_OPENAI_API_KEY."
   );
 }
+const openai = new OpenAI({
+  apiKey: API_KEY,
+  baseURL: "https://api.groq.com/openai/v1",
+  dangerouslyAllowBrowser: true,
+});
 const draftPrompt = (technology, experience) => {
   return `Generate 10 interview questions for ${experience} level candidates in ${technology}. 
 Provide the questions in a JSON array format as a list of strings.
