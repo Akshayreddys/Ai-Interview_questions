@@ -46,7 +46,7 @@ function InterviewForm({ setQuestions }) {
 
   return (
     <div className="mt-8 flex flex-col gap-3 items-center">
-      <div className="flex gap-3 justify-center w-full">
+      <div className="flex md:grid sm:grid gap-3 justify-center w-full">
         <input
           type="text"
           placeholder="Enter Technology (e.g., React, Python, Java)"
