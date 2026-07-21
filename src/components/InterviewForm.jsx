@@ -17,13 +17,13 @@ function InterviewForm({ setQuestions }) {
       }
 
       const result = await generateQuestions(technology, experience);
-      
+
       if (!result) {
         throw new Error("No response from API");
       }
 
       const parsedQuestions = JSON.parse(result);
-      
+
       if (!Array.isArray(parsedQuestions)) {
         throw new Error("API response is not an array");
       }
@@ -35,7 +35,8 @@ function InterviewForm({ setQuestions }) {
       setQuestions(parsedQuestions);
       setError("");
     } catch (err) {
-      const errorMessage = err.message || "Failed to generate questions. Please try again.";
+      const errorMessage =
+        err.message || "Failed to generate questions. Please try again.";
       setError(errorMessage);
       console.error("Error in handleGenerate:", err);
       setQuestions([]);
@@ -46,7 +47,7 @@ function InterviewForm({ setQuestions }) {
 
   return (
     <div className="mt-8 flex flex-col gap-3 items-center">
-      <div className="flex flex-col gap-3 justify-center w-full sm:flex-row sm:items-center">
+      <div className="flex flex-col gap-3 justify-center w-full sm:flex-row sm:items-center px-3">
         <input
           type="text"
           placeholder="Enter Technology (e.g., React, Python, Java)"
@@ -68,7 +69,7 @@ function InterviewForm({ setQuestions }) {
         </select>
         <button
           onClick={handleGenerate}
-          className="bg-blue-500 text-white px-4 rounded hover:bg-blue-600 disabled:bg-gray-400"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:bg-gray-400"
           disabled={loading}
         >
           {loading ? "Generating..." : "Generate Questions"}
